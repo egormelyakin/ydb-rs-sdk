@@ -8,7 +8,7 @@ use ydb_grpc::ydb_proto::r#type::{PrimitiveTypeId, Type as ProtoType};
 mod type_test;
 
 #[derive(Clone, Debug, Eq, PartialEq, strum::EnumCount, serde::Serialize)]
-pub enum RawType {
+pub(crate) enum RawType {
     // Unspecified, skip unspecified type into internal code
     Bool,
     Int8,
@@ -50,41 +50,41 @@ pub enum RawType {
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, serde::Serialize)]
-pub struct DecimalType {
+pub(crate) struct DecimalType {
     pub precision: u8,
     pub scale: i16,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, serde::Serialize)]
-pub struct TupleType {
+pub(crate) struct TupleType {
     pub elements: Vec<RawType>,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, serde::Serialize)]
-pub struct StructType {
+pub(crate) struct StructType {
     pub members: Vec<StructMember>,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, serde::Serialize)]
-pub struct StructMember {
+pub(crate) struct StructMember {
     pub name: String,
     pub member_type: RawType,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, serde::Serialize)]
-pub struct DictType {
+pub(crate) struct DictType {
     pub key: RawType,
     pub payload: RawType,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, serde::Serialize)]
-pub enum VariantType {
+pub(crate) enum VariantType {
     Tuple(TupleType),
     Struct(StructType),
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, serde::Serialize)]
-pub struct TaggedType {
+pub(crate) struct TaggedType {
     pub tag: String,
     pub item_type: RawType,
 }

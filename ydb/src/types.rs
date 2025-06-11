@@ -603,20 +603,10 @@ impl Value {
 }
 
 #[derive(Debug)]
-pub struct Column {
+pub(crate) struct Column {
     #[allow(dead_code)]
     pub(crate) name: String,
     pub(crate) v_type: RawType,
-}
-
-impl Column {
-    pub fn get_name(&self) -> String {
-        self.name.clone()
-    }
-
-    pub fn get_v_type(&self) -> RawType {
-        self.v_type.clone()
-    }
 }
 
 impl TryFrom<RawColumn> for Column {
