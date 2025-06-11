@@ -603,10 +603,10 @@ impl Value {
 }
 
 #[derive(Debug)]
-pub(crate) struct Column {
+pub struct Column {
     #[allow(dead_code)]
-    pub(crate) name: String,
-    pub(crate) v_type: RawType,
+    pub name: String,
+    pub v_type: RawType,
 }
 
 impl TryFrom<RawColumn> for Column {

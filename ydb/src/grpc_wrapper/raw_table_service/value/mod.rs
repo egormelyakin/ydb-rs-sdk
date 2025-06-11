@@ -16,7 +16,7 @@ pub(crate) struct RawTypedValue {
 }
 
 #[derive(Clone, Debug, PartialEq, strum::EnumCount, serde::Serialize)]
-pub(crate) enum RawValue {
+pub enum RawValue {
     Bool(bool),
     Int32(i32),
     UInt32(u32),
@@ -35,13 +35,13 @@ pub(crate) enum RawValue {
 }
 
 #[derive(Clone, Debug, PartialEq, serde::Serialize)]
-pub(crate) struct RawValuePair {
+pub struct RawValuePair {
     pub(in crate::grpc_wrapper::raw_table_service) key: RawValue,
     pub(in crate::grpc_wrapper::raw_table_service) payload: RawValue,
 }
 
 #[derive(Clone, Debug, PartialEq, serde::Serialize)]
-pub(crate) struct RawVariantValue {
+pub struct RawVariantValue {
     pub(in crate::grpc_wrapper::raw_table_service) value: RawValue,
     pub(in crate::grpc_wrapper::raw_table_service) index: u32,
 }

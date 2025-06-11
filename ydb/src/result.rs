@@ -138,9 +138,9 @@ impl IntoIterator for ResultSet {
 
 #[derive(Debug)]
 pub struct Row {
-    columns: Arc<Vec<crate::types::Column>>,
-    columns_by_name: Arc<HashMap<String, usize>>,
-    raw_values: HashMap<usize, RawValue>,
+    pub columns: Arc<Vec<crate::types::Column>>,
+    pub columns_by_name: Arc<HashMap<String, usize>>,
+    pub raw_values: HashMap<usize, RawValue>,
 }
 
 impl Row {
