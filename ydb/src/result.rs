@@ -160,6 +160,23 @@ impl Row {
             None => Err(YdbError::Custom("it has no the field".into())),
         }
     }
+
+    pub fn read_field_by_name(&self, name: &str) -> errors::YdbResult<Value> {
+        if let Some(&index) = self.columns_by_name.get(name) {
+            return self.read_field(index);
+        }
+        Err(YdbError::Custom("field not found".into()))
+    }
+
+    pub fn read_field(&self, index: usize) -> errors::YdbResult<Value> {
+        match self.raw_values.get(&index) {
+            Some(val) => Ok(Value::try_from(RawTypedValue {
+                r#type: self.columns[index].v_type.clone(),
+                value: val.clone(),
+            })?),
+            None => Err(YdbError::Custom("it has no the field".into())),
+        }
+    }
 }
 
 pub struct ResultSetRowsIter {
